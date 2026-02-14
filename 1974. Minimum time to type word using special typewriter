@@ -1,0 +1,25 @@
+/*Problem -1974.Minimum time to type word using special type of typewriter
+Platform-Leetcode
+Difficulty-easy
+
+Approach(Greedy approach)-
+ Each character is iterated in string while finding the difference between start letter and letter written absolute value because of circular typewritter.
+ Time taken is calculated by finding the minimum time to cover from which direction left(diff) and right(26-diff).
+ start character is changed to the current character written.
+ 1 second is always added to during time calculation due to traversing each letter takes 1 sec and writting it 1 sec.
+*/
+//Solution-
+
+class Solution {
+    public int minTimeToType(String word) {
+        int sum=0;
+        char start='a';
+        for(int i=0;word.length()>i;i++){
+            char ch=word.charAt(i);
+            int diff=Math.abs(ch-start);
+            sum+=Math.min(diff,26-diff)+1;
+            start=ch;
+        }
+        return sum;
+    }
+}
