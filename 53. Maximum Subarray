@@ -1,0 +1,27 @@
+//Problem- 53. Maximum Subarray
+//Difficulty- Medium
+//Platform- Leetcode
+/* Approach(Kadane's Algorithm)
+We iterate through a array while maintaining running sum of the current subarray.
+If the running sum become negative it is reset to 0.
+At each step we update subarray sum.
+Time Complexity: O(n)
+Space Complexity: O(1)
+*/
+
+//solution
+class Solution {
+    public int maxSubArray(int[] nums) {
+        int a=nums[0];
+        int b=0;
+        for(int n:nums){
+            if(b<0){
+                b=0;
+            }
+            b+=n;
+            a=Math.max(a,b);
+        }
+        return a;
+    }
+}
+
