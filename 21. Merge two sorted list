@@ -1,0 +1,43 @@
+/*
+Problem- 21. Merge two Sorted List
+Platform-Leetcode
+Level-easy
+Topic-Linkedlist
+
+Approach(Two pointer technique)-
+1.Created a dummy node to build a mege sorted list.
+2.Two pointer head1 and head2 traverse data until they are null.
+3.Both pointer compare value of data less value address is updated in dummy.
+4.Check if head1 or head2 list is null then address of dummy node is updated and break.
+5.Return merge sorted list.
+*/
+//Solution-
+class Solution {
+    public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+        ListNode head1=list1;
+        ListNode head2=list2;
+        ListNode dummy=new ListNode(0);
+        ListNode curr=dummy;
+        while(head1!=null||head2!=null){
+            if(head1 == null) {
+        curr.next = head2;
+        break;
+    }
+            if(head2 == null) {
+            curr.next = head1;
+            break;
+    }
+            if(head1!=null&&head1.val<=head2.val){
+                  curr.next=head1;
+                  head1=head1.next;
+            }
+            else if(head2!=null&&head2.val<=head1.val){
+                curr.next=head2;
+                head2=head2.next;
+            }
+            curr=curr.next;
+        }
+        return dummy.next;
+    }
+}
+
