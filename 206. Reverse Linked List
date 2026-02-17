@@ -1,0 +1,32 @@
+/*
+Problem-206.Reverse LinkedList
+Platform-Leetcode
+Level-easy
+Topic-LinkedList
+
+Approach(Two Pointer)-
+1. Two pointer prev and curr traverse all element.
+2. prev - stores the previous node
+curr - points to the current node
+next - temporarily stores the next node
+3.Store curr.next in next.
+4.Reverse the link by pointing curr.next to prev.
+5.Move prev forward to curr.
+6.Move curr forward to next.
+*/
+//Solution-
+class Solution {
+    public ListNode reverseList(ListNode head) {
+        ListNode prev=null;
+        ListNode curr=head;
+        while(curr!=null){
+            ListNode next=curr.next;
+            curr.next=prev;
+            
+            prev=curr;
+            curr=next;
+
+        }
+        return prev;
+    }
+}
