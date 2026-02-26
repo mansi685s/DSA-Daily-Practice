@@ -1,0 +1,41 @@
+/*
+Problem-Merge K sorted linked lists
+Platform-GeeksofGeeks
+Difficulty-Medium
+Approach-Each linked list in the array is already sorted.
+Merge lists one by one using a helper function that merges two sorted linked lists.
+Start with the first list as result.
+Continuously merge result with the next list in the array.
+The final merged list is returned.
+Solution -*/
+class Solution {
+    Node update(Node head1,Node head2){
+         Node curr=new Node(-1);
+        Node tail=curr;
+            while(head1!=null&&head2!=null){
+                if(head1.data<=head2.data){
+                    tail.next=head1;
+                    head1=head1.next;
+                }
+                else{
+                    tail.next=head2;
+                    head2=head2.next;
+                }
+                tail=tail.next;
+            }
+            if(head1!=null){
+                tail.next=head1;
+            }
+            if(head2!=null){
+                tail.next=head2;
+            }
+            return curr.next;
+    }
+    Node mergeKLists(Node[] arr) {
+       Node result=arr[0];
+        for(int i=1;i<arr.length;i++){
+            result=update(result, arr[i]);
+        }
+        return result;
+    }
+}
