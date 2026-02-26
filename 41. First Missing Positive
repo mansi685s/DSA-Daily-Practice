@@ -1,0 +1,21 @@
+*/
+Problem- First Missing Positive
+Level-Hard
+Platform-Leetcode
+
+Approach(Sort,array)-
+Sort full array , and check from variable defined as 1 if present in loop increase it and check untill loops end.
+Return a , its a missing value.
+ Solution-*/
+ class Solution {
+    public int firstMissingPositive(int[] nums) {
+         Arrays.sort(nums); 
+        int a=1; 
+        for(int i=0;i<nums.length;i++){
+            if(nums[i]==a) {
+                a++;
+            }
+        }
+        return a;
+    }
+}
