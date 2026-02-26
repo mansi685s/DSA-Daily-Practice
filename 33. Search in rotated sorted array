@@ -1,7 +1,7 @@
 Problem-33. Search in rotated sorted array
-Level-Medium
+Difficulty-Medium
 Platform-Leetcode
-
+Frequency-0ms
 Approach(Binary Search)-
 1.Find the middle element.
 2.check which half is sorted.
