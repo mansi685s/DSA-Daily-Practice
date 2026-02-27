@@ -1,0 +1,28 @@
+*/Problem- 203.Remove Linked List Element
+Platform-Leetcode
+Difficulty-Easy
+Frequency-1ms
+Approach(Basic iterative method)-
+First remove all nodes from the beginning whose value equals val.
+Traverse the linked list using a pointer curr.
+If curr.next.val == val, skip that node by changing links.
+Otherwise, move curr forward.
+Return the updated head of the list.
+Solution-*/
+
+class Solution {
+    public ListNode removeElements(ListNode head, int val) {
+        while(head != null && head.val == val){
+            head = head.next;
+        }
+        ListNode curr=head;
+        while(curr != null &&curr.next!=null){
+            if(curr.next.val==val){
+                curr.next=curr.next.next;
+            }
+            else{
+            curr=curr.next;
+        }}
+        return head;
+    }
+}
