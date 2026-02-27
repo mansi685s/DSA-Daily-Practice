@@ -1,0 +1,26 @@
+/*Problem-Linked List Cycle
+Difficulty- Easy
+Platform-Leetcode
+Approach-LinkedList, Two Pointer
+Return null if given node is null or next node is null.
+Two Pointer slow and fast traverse nodes.
+slow traverse one by one each node and fast traverse one after element 
+If both pointer element same return true or return default false.
+Solution-*/
+public class Solution {
+    public boolean hasCycle(ListNode head) {
+        if(head==null||head.next==null){
+            return false;
+        }
+        ListNode slow=head;
+        ListNode fast=head;
+        while(fast!=null&&fast.next!=null){
+            slow=slow.next;
+            fast=fast.next.next;
+            if(slow==fast){
+                return true;
+            }
+        }
+        return false;
+    }
+}
