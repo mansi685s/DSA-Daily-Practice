@@ -1,0 +1,64 @@
+/*
+Problem-445.Add two Numbers
+Platform-Leetcode
+Difficulty-Medium
+Freuency-1ms
+
+Approach-Iterative Linked List Reversal + Iterative Addition (Carry Handling)
+Reverse both input linked lists so addition can start from the least significant digit.
+Add the two reversed lists using iterative traversal:
+Maintain a carry variable.
+Add corresponding node values and carry.
+Create a new node with (sum % 10).
+Update carry = sum / 10.
+If carry remains after traversal, add an extra node.
+Reverse the resulting list again to restore forward order.
+Return the final reversed result.
+Key Functions Used:
+reverse() → Iterative linked list reversal (three-pointer method).
+add() → Iterative addition of two linked lists with carry.
+Time Complexity: O(n + m)
+Space Complexity: O(max(n, m))
+Solution-*/
+
+class Solution {
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        l1=reverse(l1);
+        l2=reverse(l2);
+        ListNode sum=add(l1,l2);
+        return reverse(sum);
+    }
+    public ListNode reverse(ListNode head){
+        ListNode curr=head,nextnode=null,prev=null;
+        while(curr!=null){
+            nextnode=curr.next;
+            curr.next=prev;
+            prev=curr;
+            curr=nextnode;
+        }
+        return prev;
+    }
+    public ListNode add(ListNode l1,ListNode l2){
+        ListNode dummy=new ListNode(0);
+      ListNode res=dummy;
+      int sum=0,carry=0;
+      while(l1!=null||l2!=null){
+       sum=carry;
+        if(l1!=null){
+           sum+=l1.val;
+           l1=l1.next;
+        }
+        if(l2!=null){
+            sum+=l2.val;
+            l2=l2.next;
+        }
+        carry=sum/10;
+        res.next=new ListNode(sum%10);
+        res=res.next;
+      }
+      if (carry!=0){
+            res.next=new ListNode(carry);
+        }
+      return dummy.next;
+    }
+}
