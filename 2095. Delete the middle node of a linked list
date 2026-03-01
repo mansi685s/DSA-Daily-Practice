@@ -1,0 +1,41 @@
+/* Problem 2095. Delete the Middle Node of a Linked List
+Platform-Leetcode
+Difficulty-Medium
+Frequency-7ms
+
+Approach-
+Use two pointer technique (slow and fast pointer).
+Slow moves one step and fast moves two steps.
+When fast reaches the end, slow will be at the middle node.
+Create a dummy node to build the updated list.
+Traverse till middle while copying nodes before middle.
+Skip the middle node.
+Attach remaining list after middle.
+Return next node of dummy.
+
+Solution-*/
+class Solution {
+    public ListNode deleteMiddle(ListNode head) {
+
+        if(head == null || head.next == null)
+            return null;
+
+        ListNode slow = head;
+        ListNode fast = head;
+
+        ListNode abc = new ListNode(-1);
+        ListNode tail = abc;
+
+        while(fast != null && fast.next != null){
+            tail.next = slow;
+            tail = tail.next;
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        slow = slow.next;     // skip middle node
+        tail.next = slow;
+
+        return abc.next;
+    }
+}
