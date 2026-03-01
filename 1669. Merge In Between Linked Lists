@@ -1,0 +1,38 @@
+/* Problem 1669. Merge In Between Linked Lists
+Platform-Leetcode
+Difficulty-Medium
+Frequency-7ms
+
+Approach-
+Traverse list1 to reach the node just before index a.
+Store this node as first.
+Move another pointer to the node just after index b.
+Connect first.next to list2.
+Traverse list2 till its last node.
+Attach the remaining part of list1 after index b.
+Return modified list1.
+
+Solution-*/
+class Solution {
+    public ListNode mergeInBetween(ListNode list1, int a, int b, ListNode list2) {
+        int i=0;
+        ListNode first=list1;
+        while(i<a-1){
+            first=first.next;
+            i++;
+        }
+        ListNode after=first;
+        int j=a-1;
+        while(j<=b){
+            after=after.next;
+            j++;
+        }
+        first.next=list2;
+        ListNode res=list2;
+        while(res.next!=null){
+            res=res.next;
+        }
+        res.next=after;
+        return list1;
+    }
+}
