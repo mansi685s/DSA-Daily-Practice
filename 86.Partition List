@@ -1,0 +1,36 @@
+Problem-86. Partition List
+Difficulty-Medium
+Platform-Leetcode
+Approach-Method Used: Two dummy nodes + single traversal
+Create two lists:
+small → nodes < x
+greater → nodes >= x
+Traverse the list once and attach nodes accordingly.
+Set grea.next = null (to avoid cycle).
+Connect small list to greater list.
+Return small.next.
+Time: O(n)
+Space: O(1)
+Solution-
+class Solution {
+    public ListNode partition(ListNode head, int x) {
+        ListNode small=new ListNode(0);
+        ListNode greater=new ListNode(0);
+        ListNode sma=small;
+        ListNode grea=greater;
+        while(head!=null){
+            if(head.val<x){
+                sma.next=head;
+                sma=sma.next;
+            }
+            else{
+                grea.next=head;
+                grea=grea.next;
+            }
+            head=head.next;
+        }
+        grea.next=null;
+        sma.next=greater.next;
+        return small.next;
+    }
+}
