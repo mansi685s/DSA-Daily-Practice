@@ -1,0 +1,26 @@
+/*
+Problem-121. Best time to buy and sell stock
+Platform- Leetcode
+Difficulty- Easy
+Frequency- 2ms
+Approach-Sliding window
+Traverse the prices array while keeping track of the minimum price seen so far (best day to buy).
+For each day, calculate the current profit by subtracting the minimum price from the current price.
+Update the maximum profit if the current profit is greater.
+Finally, return the maximum profit obtained.
+Solution-*/
+class Solution {
+    public int maxProfit(int[] prices) {
+           int min=prices[0] ,profit=0;
+           for(int i=1;prices.length>i;i++){
+            if(prices[i]<min){
+                min=prices[i];
+            }
+            int currprofit=prices[i]-min;
+            if(currprofit>profit){
+                profit=currprofit;
+            }
+           }
+           return profit;            
+    }
+}
