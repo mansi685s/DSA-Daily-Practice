@@ -1,0 +1,27 @@
+/*Problem- 209.Minimum size subarray sum
+Platform- Leetcode
+Difficulty- Medium
+Frequency- 1ms
+Approach- sliding window
+1.Expand window by moving right
+2.Add elements to sum
+3.When sum >= target
+4.Try shrinking window from left to find minimum length
+Solution- */
+class Solution {
+    public int minSubArrayLen(int target, int[] nums) {
+        int left=0, sum=0,minlen=Integer.MAX_VALUE;
+        for(int i=0;nums.length>i;i++){
+            sum+=nums[i];
+            while(sum>=target){
+                minlen=Math.min(minlen,i-left+1);
+                sum-=nums[left];
+                left++;
+            }
+        }
+        if(minlen==Integer.MAX_VALUE){
+           return 0;
+        }
+        return minlen;
+    }
+}
