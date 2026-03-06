@@ -1,0 +1,30 @@
+/*
+Problem- 395. Longest Substring with at least k repeating character
+Platform- Leetcode
+Frequency- 60ms
+Difficulty- Medium
+Approach-Divide and Conquer
+Count frequency of characters in the string.
+If a character appears less than k, it cannot be part of the valid substring.
+Use that character as a split point.
+Solve the left and right parts recursively.
+Take the maximum length.
+Solution*/
+class Solution {
+    public int longestSubstring(String s, int k) {
+        int arr[]=new int[26];
+        for(int i=0;s.length()>i;i++){
+            arr[s.charAt(i)-'a']++;
+        }
+        int count=0,max=Integer.MIN_VALUE;
+        for(int i=0;s.length()>i;i++){
+           char ch=s.charAt(i);
+           if(arr[ch-'a']<k){
+           int left=longestSubstring(s.substring(0,i),k);
+           int right=longestSubstring(s.substring(i+1),k);
+           return Math.max(left,right);
+           }
+        }
+            return s.length();
+    }
+}
