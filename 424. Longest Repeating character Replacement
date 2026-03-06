@@ -1,0 +1,41 @@
+/*
+Problem- 424.Longest Repeating character Replacement
+Frequency-11ms
+Platform-Leetcode
+Difficulty- Medium
+
+Approach- Sliding window
+
+Maintain a frequency array (arr[26]) to count occurrences of characters in the current window.
+Use two pointers:
+left → start of window
+right → end of window
+Track maxfrequency:
+the highest frequency of a single character inside the window.
+Check if the window is valid:
+window size - maxfrequency <= k
+Meaning:
+characters that need replacement ≤ k.
+If replacements needed become greater than k, shrink the window:
+decrease frequency of s[left]
+move left++.
+Update the maximum window length as the result.
+
+Solution-*/
+class Solution {
+    public int characterReplacement(String s, int k) {
+       int arr[]=new int[26];
+       int left=0,result=0,maxfrequency=0;
+
+       for(int right=0;s.length()>right;right++){
+        arr[s.charAt(right)-'A']++;
+        maxfrequency=Math.max(maxfrequency, arr[s.charAt(right)-'A']);
+        if(right-left+1-maxfrequency>k){
+             arr[s.charAt(left)-'A']--;
+             left++;
+        }
+        result=Math.max(result,right-left+1);
+       }
+       return result;
+    }
+}
