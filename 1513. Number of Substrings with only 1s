@@ -1,0 +1,27 @@
+/*
+Problem- 1513. Number of Substrings with only 1s
+Platform- Leetcode
+Difficulty- Medium
+Frequency- 3ms
+Approach- Iterative Method
+Iteration: Loop through each character in the string:
+If the character is '1', increment the curr.
+If the character is '0', reset curr to zero since the substring cannot continue.
+Use modular addition function to safely add the current count of substrings to total, ensuring to take modulo (10^9 + 7) to prevent overflow.
+Return the total: At the end of the loop, return the accumulated value of total.
+Solution-*/
+class Solution {
+    public int numSub(String s) {
+        long total = 0;
+        int curr = 0;
+        for (char symbol: s.toCharArray()) {
+            if (symbol == '1') {
+                curr++;
+                total+=curr;
+            } else {
+                curr=0;
+            }
+        }
+        return (int) (result % 1000000007);
+    }
+}
