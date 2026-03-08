@@ -1,0 +1,40 @@
+/*
+Problem- 3862.Find the smallest Balanced index
+Platform-Leetcode
+Difficulty-Medium
+Frequency-0ms
+Approach-
+Calculate total sum of all elements in nums.
+Initialize:
+leftSum = totalSum (represents sum of elements to the left).
+rightProd = 1 (product of elements to the right).
+Traverse the array from right to left.
+For each index i:
+Subtract nums[i] from leftSum (now it becomes the sum of elements left of i).
+Check if leftSum == rightProd.
+If true → return i (balanced index found).
+Multiply rightProd by nums[i] to include it in the right-side product.
+If rightProd becomes larger than totalSum, break early (no match possible).
+If no index satisfies the condition, return -1.
+
+Solution-*/
+class Solution {
+    public int smallestBalancedIndex(int[] nums) {
+        int n = nums.length;
+        
+        long totalSum = 0;
+        for(int num : nums) totalSum += num;
+
+        long leftSum = totalSum;
+        long rightProd = 1;
+
+        for(int i = n-1; i >= 0; i--) {
+            leftSum -= nums[i];
+            if(leftSum == rightProd) return i;
+            if(rightProd > totalSum) break;
+            rightProd *= nums[i];
+        }
+
+        return -1;
+    }
+}
