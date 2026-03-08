@@ -1,0 +1,40 @@
+/*Problem- 3861. Minimum Capacity Box
+Platform- Leetcode
+Difficulty- Easy
+Frequency- 5ms
+Approach-
+Copy the capacity array into another array arr.
+Sort arr so capacities are in ascending order.
+Find the smallest capacity ≥ itemSize:
+Iterate through arr.
+Choose the value ya where ya >= itemSize and (ya - itemSize) is minimum.
+Store this value in v.
+Find the index in the original capacity array where capacity[i] == v.
+Return that index.
+If no capacity can hold the item, return -1.
+
+Solution-*/
+class Solution {
+    public int minimumIndex(int[] capacity, int itemSize) {
+        int arr[]=new int[capacity.length];
+        int t=0;
+        for(int x:capacity){
+            arr[t]=x;
+            t++;
+        }
+        Arrays.sort(arr);
+        int min=Integer.MAX_VALUE,v=0;
+        for(int ya:arr){
+            if(ya-itemSize<min&&ya>=itemSize){
+                min=ya-itemSize;
+                v=ya;
+            }
+        }
+        for(int i=0;capacity.length>i;i++){
+            if(capacity[i]==v){
+                return i;
+            }
+        }
+        return -1;
+    }
+}
