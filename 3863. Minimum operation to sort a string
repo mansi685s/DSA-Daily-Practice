@@ -1,0 +1,64 @@
+/*Problem-3863. Minimum operation to sort a string
+Platform-Leetcode
+Difficulty-Medium
+Frequency- 64ms
+Approach-
+Convert the string to a char array arr and create another sorted array arr1 (target sorted string).
+Check base cases:
+If arr is already equal to arr1 → return 0.
+If string length < 3 → return -1 (cannot perform required operations).
+Quick optimization:
+If the first or last character is already in the correct position after sorting → return 1.
+The operation allowed is:
+Sort either the substring [0, n-2] or [1, n-1].
+Try two strategies:
+Start by sorting [0, n-2] then alternate with [1, n-1].
+Start by sorting [1, n-1] then alternate with [0, n-2].
+Count operations until the array becomes equal to the sorted array.
+Return the minimum operations from the two strategies.
+Solution-*/
+class Solution {
+    public int minOperations(String s) {
+      int n = s.length();
+        char[] arr = s.toCharArray();
+        char[] arr1 = s.toCharArray();
+        Arrays.sort(arr1);
+
+        if (Arrays.equals(arr, arr1))
+            return 0;
+
+        if (n < 3)
+            return -1;
+
+        if (arr[0] == arr1[0] || arr[n - 1] == arr1[n - 1])
+            return 1;
+
+        int ans1 = 0;
+        boolean bit = true;
+
+        while (!Arrays.equals(arr, arr1)) {
+            if (bit)
+                Arrays.sort(arr, 0, n - 1);
+            else
+                Arrays.sort(arr, 1, n);
+            bit = !bit;
+            ans1++;
+        }
+
+        arr = s.toCharArray();
+        int ans2 = 0;
+        bit = false;
+
+        while (!Arrays.equals(arr, arr1)) {
+            if (bit)
+                Arrays.sort(arr, 0, n - 1);
+            else
+                Arrays.sort(arr, 1, n);
+            bit = !bit;
+            ans2++;
+        }
+
+        return Math.min(ans1, ans2);
+        
+    }
+}
