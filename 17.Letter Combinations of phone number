@@ -1,0 +1,37 @@
+/*Problem- 17.Letter Combinations of phone number
+Difficulty- Medium
+Platform- Leetcode
+Frequency- 1ms
+Approach-HashMap,Backtracking
+Solution-*/
+import java.util.*;
+class Solution {
+    
+    public List<String> letterCombinations(String digits) {
+        ArrayList<String>list=new ArrayList<>();
+         HashMap<Character, String> map = new HashMap<>();
+        map.put('2', "abc");
+        map.put('3', "def");
+        map.put('4', "ghi");
+        map.put('5', "jkl");
+        map.put('6', "mno");
+        map.put('7', "pqrs");
+        map.put('8', "tuv");
+        map.put('9', "wxyz");
+        backtrack(map,0,new StringBuilder(),list,digits);
+        return list;
+    }
+    public void backtrack(HashMap<Character,String> map,int idx,StringBuilder h1,List<String>list,String digits){
+        if(idx==digits.length()){
+            list.add(h1.toString());
+            return;
+        }
+        String xy=map.get(digits.charAt(idx));
+        for(char c:xy.toCharArray()){
+            h1.append(c);
+            backtrack(map,idx+1,h1,list,digits);
+            h1.deleteCharAt(h1.length() - 1);
+        }
+    
+    }
+}
