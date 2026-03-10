@@ -1,0 +1,29 @@
+Problem- 2404. Most frequent even element
+Platform- easy
+Difficulty- easy
+Frequency-23ms
+Approach-HashMap
+Solution-
+class Solution {
+    public int mostFrequentEven(int[] nums) {
+      HashMap<Integer,Integer>map=new HashMap<>();
+      for(int i=0;nums.length>i;i++){
+        if(map.containsKey(nums[i])){
+            map.put(nums[i],map.get(nums[i])+1);
+        }
+        else{
+            map.put(nums[i],1);
+        }
+      }
+      int max=Integer.MIN_VALUE,x=-1;
+      for(int i=0;nums.length>i;i++){
+        if(nums[i]%2==0){
+            if(max<map.get(nums[i])||(map.get(nums[i])==max && nums[i]<x)){
+                max=map.get(nums[i]);
+                x=nums[i];
+            }
+        }
+      }
+      return x;
+    }
+}
