@@ -1,0 +1,27 @@
+/*
+PROBLEM-1436. Destination city
+Platform-Leetcode
+Frequency-2ms
+Difficulty-2ms
+Approach- HashMap
+Saved all city on index 0 in 2d array list ,destination started from.
+Checked if destination city at index of 1 in 2d array list is present in hashmap or not
+If not present then return it.
+Solution-*/
+class Solution {
+    public String destCity(List<List<String>> paths) {
+        HashMap<String,Integer>map=new HashMap<>();
+        for(int i=0;i<paths.size();i++){
+            String a=paths.get(i).get(0);
+            map.put(a,1); 
+        }
+
+        for(int i=0;i<paths.size();i++){
+            String b=paths.get(i).get(1);
+            if(!map.containsKey(b)){
+                return b;
+            }
+        }
+        return "";
+    }
+}
