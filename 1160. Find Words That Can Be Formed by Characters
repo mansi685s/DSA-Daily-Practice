@@ -1,0 +1,48 @@
+/*
+Problem- 1160. Find Words That Can Be Formed by Characters 
+Platform- Leetcode
+Frequency-57ms
+Difficulty-easy
+Approach- HashMap
+Solution-*/
+class Solution {
+    public int countCharacters(String[] words, String chars) {
+        HashMap<Character,Integer>map=new HashMap<>();
+        for(char ch:chars.toCharArray()){
+            if(map.containsKey(ch)){
+                map.put(ch,map.get(ch)+1);
+            }
+            else{
+                map.put(ch,1);
+            }
+        }
+        int count=0;
+        for(int i=0;words.length>i;i++){
+            HashMap<Character,Integer>map1=new HashMap<>();
+            String a=words[i];
+            int sum=0;
+            for(int j=0;a.length()>j;j++){
+                char ch=a.charAt(j);
+                if(map1.containsKey(ch)){
+                    map1.put(ch,map1.get(ch)+1);
+                }
+                else{
+                    map1.put(ch,1);
+                }
+            }
+            for(char ch1:map1.keySet()){
+                if(map.containsKey(ch1)&&map1.get(ch1)<=map.get(ch1)){
+                    sum++;
+                }
+                else{
+                   sum=0;
+                   break;
+                }
+            }
+            if(sum>0){
+                count+=a.length();
+            }
+        }
+        return count;
+    }
+}
