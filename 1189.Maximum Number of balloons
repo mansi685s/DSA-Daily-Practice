@@ -1,0 +1,53 @@
+/*
+Problem-1189.Maximum Number of balloons
+Platform-Leetcode
+Difficulty-easy
+Frequency-16ms
+
+Approach-HashMap
+Saved all character frequency of string in hash map.
+Checked whether each letter of ballon is present if yes then countincrease by 1 and frequency of ballon reduce by 1 in hashmap.
+If not present then in else we break loop.
+Return count.
+
+Solution-*/
+import java.util.*;
+
+class Solution {
+    public int maxNumberOfBalloons(String text) {
+        HashMap<Character,Integer> map = new HashMap<>();
+
+        for(char a : text.toCharArray()){
+            if(map.containsKey(a)){
+                map.put(a, map.get(a) + 1);
+            }
+            else{
+                map.put(a, 1);
+            }
+        }
+
+        int count = 0;
+
+        while(map.containsKey('b') && map.get('b') > 0){
+            if(map.containsKey('b') && map.get('b') >= 1 &&
+               map.containsKey('a') && map.get('a') >= 1 &&
+               map.containsKey('l') && map.get('l') >= 2 &&
+               map.containsKey('o') && map.get('o') >= 2 &&
+               map.containsKey('n') && map.get('n') >= 1){
+
+                count++;
+
+                map.put('b', map.get('b') - 1);
+                map.put('a', map.get('a') - 1);
+                map.put('l', map.get('l') - 2);
+                map.put('o', map.get('o') - 2);
+                map.put('n', map.get('n') - 1);
+            }
+            else{
+                break;
+            }
+        }
+
+        return count;
+    }
+}
