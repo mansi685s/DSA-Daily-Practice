@@ -1,0 +1,26 @@
+Problem- 1365.. How Many Numbers Are Smaller Than the Current Number
+Platfome-Leetcode
+Difficulty-easy
+Frequency-8ms
+Approach-HashMap, Sorting
+Solution-class Solution {
+    public int[] smallerNumbersThanCurrent(int[] nums) {
+        HashMap<Integer,Integer>map=new HashMap<>();
+        int t[]=new int[nums.length],j=0;
+        for(int a:nums){
+            t[j]=a;
+            j++;
+        }
+        Arrays.sort(nums);
+        for(int i=0;nums.length>i;i++){
+            if(!map.containsKey(nums[i])){
+                map.put(nums[i],i);
+            }
+        }
+       int a[]=new int[nums.length];
+       for(int i=0;t.length>i;i++){
+            a[i]=map.get(t[i]);
+       }
+       return a;
+    }
+}
