@@ -1,0 +1,33 @@
+/*Problem-697. Degree of an array
+Platform-Leetcode
+Difficulty-easy
+Frequency-27ms
+Approach-HashMap
+Solution-*/
+class Solution {
+    public int findShortestSubArray(int[] nums) {
+         HashMap<Integer,Integer> map1=new HashMap<>();
+        HashMap<Integer,int[]> map2=new HashMap<>();
+        int degree=0;
+        for(int i=0;i<nums.length;i++){
+            int x=nums[i];
+            map1.put(x,map1.getOrDefault(x,0)+1);
+            degree=Math.max(degree,map1.get(x));
+            if(!map2.containsKey(x)){
+                map2.put(x,new int[]{i,i});
+            }else{
+            int[] arr=map2.get(x);
+            arr[1] = i;
+}
+        }
+        int ans=nums.length;
+        for(int key:map1.keySet()){
+            if(map1.get(key)==degree){
+                int[] arr=map2.get(key);
+                int len=arr[1]-arr[0]+1;
+                ans=Math.min(ans,len);
+            }
+        }
+        return ans;
+    }
+}
