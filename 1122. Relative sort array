@@ -1,0 +1,38 @@
+/*
+Problem- 1122. Relative sort array
+Platform- Leetcode
+Difficulty- easy
+Frequency-6ms
+Approach- HashMap
+Solution-*/
+class Solution {
+    public int[] relativeSortArray(int[] arr1, int[] arr2) {
+        HashMap<Integer,Integer>map=new HashMap<>();
+        ArrayList<Integer>list=new ArrayList<>();
+        for(int x:arr1){
+            map.put(x,map.getOrDefault(x,0)+1);
+        }
+        for(int x:arr2){
+            if(map.containsKey(x)&&map.get(x)>0){
+                while(map.get(x)>0){
+                 list.add(x);
+                map.put(x,map.getOrDefault(x,0)-1);
+            }
+            }
+
+        }
+        Arrays.sort(arr1);
+        for(int x:arr1){
+            if(map.containsKey(x)&&map.get(x)>0){
+                 list.add(x);
+            }
+        }
+       int a[]=new int[list.size()];
+       int i=0;
+       for(int x:list){
+        a[i]=x;
+        i++;
+       }
+       return a;
+    }
+}
