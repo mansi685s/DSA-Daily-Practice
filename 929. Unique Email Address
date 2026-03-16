@@ -1,0 +1,36 @@
+/*Problem-929.Unique Email Addresses
+Platform-Leetcode
+Difficulty-easy
+Frequency-26ms
+Approach-HashMap
+Solution-*/
+class Solution {
+    public int numUniqueEmails(String[] emails) {
+        HashMap<String,Integer>map=new HashMap<>();
+        String e1;
+        for(String x:emails){
+            char s[]=x.toCharArray();
+            String a="";int count=0;
+            for(int i=0;s.length>i;i++){
+                if(s[i]=='@'){
+                    count++;
+                    a+='@';
+                }
+            if(s[i]=='.'&&count==0){
+                continue;
+            }
+            else if(s[i]=='+'&&count==0){
+                while(s[i]!='@'){
+                    i++;
+                }
+                i--;
+            }
+            else{
+            a+=s[i];
+            }
+        }
+        map.put(a,map.getOrDefault(a,0)+1);
+        }
+        return map.size();
+    }
+}
