@@ -1,0 +1,29 @@
+/*
+Problem- 888.Fair Candy Swap
+Platform- Leetcode
+Difficulty-easy
+Frequency-11ms
+Approach-HashMap
+Solution-*/
+class Solution {
+    public int[] fairCandySwap(int[] aliceSizes, int[] bobSizes) {
+        int[] arr=new int[2];
+        HashMap<Integer,Integer>map=new HashMap<>();
+        int sum=0,sum1=0;
+        for(int x:aliceSizes){
+         sum+=x;
+        }
+        for(int x:bobSizes){
+             map.put(x,map.getOrDefault(x,0)+1);
+             sum1+=x;
+        }int diff=(sum-sum1)/2;
+        for(int x:aliceSizes){
+            if(map.containsKey(x-diff)){
+                arr[0]=x;
+                arr[1]=x-diff;
+                return arr;
+            }
+        }
+        return arr;
+    }
+}
