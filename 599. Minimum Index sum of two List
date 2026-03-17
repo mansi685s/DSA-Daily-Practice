@@ -1,0 +1,37 @@
+/*
+Problem-599. Minimum Index sum of two List
+Platform-Leetcode
+Difficulty-easy
+Frequency-9ms
+Approach-HashMap
+Solution-*/
+class Solution {
+    public String[] findRestaurant(String[] list1, String[] list2) {
+        HashMap<String,Integer>map=new HashMap<>();
+        int i=0;
+        for(String x:list1){
+            map.put(x,i);
+            i++;
+        }
+        i=0;
+        ArrayList<String>list=new ArrayList<>();
+         int min=Integer.MAX_VALUE;
+        for(String x:list2){
+            if(map.containsKey(x)){
+                 if(min>i+map.get(x)){
+                    min=i+map.get(x);
+                    list.clear();
+                    list.add(x);
+                 }
+                 else if(min==i+map.get(x)){
+                    list.add(x);
+                 }
+            }
+            i++;
+        }String[] ans = new String[list.size()];
+        for(int k=0;k<list.size();k++){
+            ans[k] = list.get(k);
+        }
+        return ans;
+    }
+}
