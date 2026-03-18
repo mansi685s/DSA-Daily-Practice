@@ -1,0 +1,28 @@
+/*
+Problem-383.Ransom Note
+Platform-Leetcode
+Frequency-15ms
+Difficulty- easy
+Approach-HashMap
+Solution-*/
+class Solution {
+    public boolean canConstruct(String ransomNote, String magazine) {
+        HashMap<Character,Integer>map=new HashMap<>();
+        HashMap<Character,Integer>map1=new HashMap<>();
+        for(char a:ransomNote.toCharArray()){
+            map.put(a,map.getOrDefault(a,0)+1);
+        }
+        for(char a:magazine.toCharArray()){
+            map1.put(a,map1.getOrDefault(a,0)+1);
+        }
+        for(char Key:map.keySet()){
+            if(!map1.containsKey(Key)){
+                return false;
+            }
+            else if(map.get(Key)>map1.get(Key)){
+                return false;
+            }
+        }
+        return true;
+    }
+}
