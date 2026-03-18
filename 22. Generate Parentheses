@@ -1,0 +1,25 @@
+/*Problem-22.Generate Parentheses
+Platform-Leetcode
+Frequency-2ms
+Difficulty-medium
+Approach-Dynamic Programming, Backtracking
+Solution-*/
+class Solution {
+    public List<String> generateParenthesis(int n) {
+       ArrayList<String>list=new ArrayList<>();
+       recursion(n,0,0,"",list);
+       return list;
+    }
+    public void recursion(int n,int left,int right,String s,ArrayList<String>list){
+        if(s.length()==n*2){
+            list.add(s);
+            return ;
+        }
+        if(left<n){
+            recursion(n,left+1,right,s+"(",list);
+        }
+        if(left>right){
+            recursion(n,left,right+1,s+")",list);
+        }
+    }
+}
