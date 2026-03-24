@@ -1,0 +1,29 @@
+/*Problem-73.Set Matrix Zeroes
+Platform-Leetcode
+Frequency-13ms
+Approach-Iteration of element
+Solution-*/
+class Solution {
+    public void setZeroes(int[][] mat) {
+      int x=mat.length,y=mat[0].length;
+        int arr[][]= new int[x][y];
+        for(int i=0;i<x;i++){
+            for(int j=0;j<y;j++)
+                arr[i][j]=mat[i][j];
+        }       
+        for(int i=0;i<x;i++){
+            for(int j=0;j<y;j++){
+                if(mat[i][j]==0){
+                    for(int k=0;k<y;k++)
+                        arr[i][k]=0;
+                    for(int k=0;k<x;k++)
+                        arr[k][j]=0;
+                }
+            }
+        }
+        for(int i=0;i<x;i++){
+            for(int j=0;j<y;j++)
+                mat[i][j]=arr[i][j];
+        }
+    }
+    }
