@@ -1,0 +1,22 @@
+/*
+Problem-229. Majority Element II
+Platform-Leetcode
+Frequency-15ms
+Difficult-Medium
+Approach-HashMap
+Solution-*/
+class Solution {
+    public List<Integer> majorityElement(int[] nums) {
+        ArrayList<Integer>list=new ArrayList<>();
+        HashMap<Integer,Integer>map=new HashMap<>();
+        for(int x:nums){
+            map.put(x,map.getOrDefault(x,0)+1);
+        }
+        for(int x:map.keySet()){
+            if(map.get(x)>nums.length/3){
+                list.add(x);
+            }
+        }
+        return list;
+    }
+}
