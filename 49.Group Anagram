@@ -1,0 +1,30 @@
+Problem-49.Group Anagram
+Platform- Leetcode
+Frequency- 51ms
+Difficulty-Medium
+Approach-HashMap, ArrayList
+Solution-
+class Solution {
+    public List<List<String>> groupAnagrams(String[] arr) {
+    HashMap<HashMap<Character,Integer>, ArrayList<String>>map=new HashMap<>();
+    for(int i=0;arr.length>i;i++){
+     String s = arr[i];
+		    HashMap<Character,Integer> map2 = new HashMap<>();
+
+		    for(int j=0;j<s.length();j++){
+		        char c = s.charAt(j);
+		        map2.put(c,map2.getOrDefault(c,0)+1);
+		    }
+		    if(map.containsKey(map2)){
+                map.get(map2).add(s);
+            }
+            else{
+                ArrayList<String>list=new ArrayList<>();
+                list.add(s);
+                map.put(map2, list);
+            }
+
+		}
+        return new ArrayList<>(map.values());
+    }
+}
