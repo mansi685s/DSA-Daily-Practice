@@ -1,0 +1,17 @@
+/*Problem-442. Find All Duplicates in an Array
+Platform-Leetcode
+Freuency-25ms
+Difficulty-Medium
+Solution-*/
+class Solution {
+    public List<Integer> findDuplicates(int[] nums) {
+        Arrays.sort(nums);
+        ArrayList<Integer>list=new ArrayList<>();
+        for(int i=1;nums.length>i;i++){
+            if(nums[i-1]==nums[i]){
+                list.add(nums[i]);
+            }
+        }
+        return list;
+    }
+}
