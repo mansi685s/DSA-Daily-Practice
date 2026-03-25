@@ -1,0 +1,27 @@
+/*
+Problem-451. Sort Characters By Frequency
+Platform-Leetcode
+Frequency-17ms
+Difficulty-medium
+Solution-*/
+class Solution {
+    public String frequencySort(String s) {
+        HashMap<Character,Integer>map=new HashMap<>();
+        for(char sa:s.toCharArray()){
+            map.put(sa,map.getOrDefault(sa,0)+1);
+        }
+     ArrayList<Character>list = new ArrayList<>(map.keySet());
+    
+     list.sort((a,b)->Integer.compare(map.get(b), map.get(a)));
+     StringBuilder ab=new StringBuilder();
+     for(int i=0;list.size()>i;i++){
+       char ch = list.get(i);
+            int j = map.get(ch);
+        while(j>0){
+        ab.append(ch);
+        j--;
+        }
+     }
+return ab.toString();
+    }
+}
