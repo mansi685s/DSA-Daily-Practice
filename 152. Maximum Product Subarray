@@ -1,0 +1,24 @@
+/*
+Problem-152. Maximum Product Subarray
+Platform-Leetcode
+Frequency-2ms
+Difficulty-medium
+Approach-Dynamic Programming
+Solution-*/
+class Solution {
+    public int maxProduct(int[] nums) {
+        if(nums.length==1)return nums[0];
+       int product=nums[0],max=nums[0],min=nums[0];
+        for(int i=1;nums.length>i;i++){
+           if(nums[i]<0){
+            int temp=max;
+            max=min;
+            min=temp;
+           }
+            max=Math.max(nums[i],max*nums[i]);
+            min=Math.min(nums[i],min*nums[i]);
+           product=Math.max(max,product);
+        }
+        return product;
+    }
+}
