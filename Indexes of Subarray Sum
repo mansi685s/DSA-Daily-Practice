@@ -1,0 +1,26 @@
+Problem-Indexes of Subarray Sum
+Platform-gfg
+Difficulty-Medium
+Approach-sliding window
+Solution-
+class Solution {
+    static ArrayList<Integer> subarraySum(int[] arr, int target) {
+        // code here
+        ArrayList<Integer>list=new ArrayList<>();
+        int left=0,sum=0;
+        for(int i=0;arr.length>i;i++){
+            sum+=arr[i];
+            while(sum>target &&left<=i){
+                sum-=arr[left];
+                left++;
+            }
+            if(sum==target){
+                list.add(left+1);
+                list.add(i+1);
+                return list;
+            }
+        }
+        list.add(-1);
+        return list;
+    }
+}
