@@ -1,0 +1,24 @@
+/*
+Problem-Count the number of subarray
+Platform-GFG
+Difficulty-Hard
+Approach-sliding window
+Solution-*/
+class Solution {
+    long countSubarray(int N, int A[], long L, long R) {
+        
+       return find(A,R)-find(A,L-1);
+    }
+    long find(int A[], long K) {
+        long sum=0,count=0;
+        int left=0;
+        for(int right=0;right<A.length;right++) {
+            sum+=A[right];
+            while(sum>K) {
+                sum-=A[left++];
+            }
+            count+=(right-left+1);
+        }
+        return count;
+    }
+}
