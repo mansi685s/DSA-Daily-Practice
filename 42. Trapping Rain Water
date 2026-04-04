@@ -1,0 +1,24 @@
+Problem- 42. Trapping Rain Water
+Platform-Leetcode
+Frequency-0ms
+Difficulty-Hard
+Approach-Dynamic Programming, TwoPointer
+Solution-
+class Solution {
+    public int trap(int[] height) {
+        int i=0,j=height.length-1, total=0, left=0,right=0;
+        while(j>i){
+            left=Math.max(left,height[i]);
+            right=Math.max(right,height[j]);
+            if(left<right){
+                total+=left-height[i];
+                i++;
+            }
+            else{
+                total+=right-height[j];
+                j--;
+            }
+        }
+        return total;
+    }
+}
