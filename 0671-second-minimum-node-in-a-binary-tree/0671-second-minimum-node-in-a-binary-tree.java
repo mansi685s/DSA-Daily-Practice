@@ -15,11 +15,20 @@
  */
 class Solution {
    public int findSecondMinimumValue(TreeNode root) {
-    if(root.left == null) return -1;
-        
-        int l = root.left.val == root.val ? findSecondMinimumValue(root.left) : root.left.val;
-        int r = root.right.val == root.val ? findSecondMinimumValue(root.right) : root.right.val;
-        
-        return l == -1 || r == -1 ? Math.max(l, r) : Math.min(l, r);
-   }
+        if(root.left == null) return -1;
+    if(root==null || root.right==null || root.left==null) return -1;
+        Queue<TreeNode> q = new LinkedList<>();
+        q.offer(root);
+        Integer secondMin = null;
+        while(!q.isEmpty()) {
+            TreeNode curr = q.poll();
+            if(curr.right!=null) q.offer(curr.right);
+            if(curr.left!=null) q.offer(curr.left);
+            if(curr.val!=root.val) {
+                if(secondMin==null) secondMin = curr.val;
+                else secondMin = Math.min(secondMin, curr.val);
+            }
+        }
+        return secondMin==null? -1 : secondMin;
+}
 }
